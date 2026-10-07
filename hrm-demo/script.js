@@ -729,7 +729,16 @@
   modalRoot.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) closeModal(); });
   const modalHead = (title, sub = '') => `<div class="modal-head"><div><h3>${title}</h3>${sub ? `<p>${sub}</p>` : ''}</div><button class="icon-btn sm modal-close" data-close aria-label="Close">${icon('x')}</button></div>`;
 
+  const FRAMED = (() => { try { return window.self !== window.top; } catch (_) { return true; } })();
+  function previewCSV(filename, rows) {
+    const head = rows[0], body = rows.slice(1, 13);
+    openModal(`${modalHead('Report preview', `${esc(filename)} · ${num(rows.length - 1)} rows`)}
+      <div class="modal-body"><div class="table-wrap" style="border:1px solid var(--border);border-radius:10px"><table class="table no-top" style="min-width:560px"><thead><tr>${head.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+      <p class="muted mt-12" style="font-size:12.5px">${icon('info', 'xs')} Showing the first ${body.length} rows. File downloads are turned off in the online demo; in the delivered system this exports as CSV, Excel or PDF.</p></div>
+      <div class="modal-foot"><button class="btn btn-primary btn-sm" data-close>Done</button></div>`, 'lg');
+  }
   function downloadCSV(filename, rows) {
+    if (FRAMED) { previewCSV(filename, rows); return; }
     const csv = rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
     const note = '"DEMO DATA — NovaCore HR product demonstration. All information is fictional."\n';
     const blob = new Blob([note + csv], { type: 'text/csv;charset=utf-8' });
@@ -1292,7 +1301,7 @@
           <div class="ps-note">DEMO PAYSLIP — all values are fictional and for illustration only.</div>
         </div>
       </div>
-      <div class="modal-foot"><span class="left">${icon('lock', 'sm')} Visible to employee &amp; payroll admins</span><button class="btn btn-secondary btn-sm" data-action="print">${icon('printer', 'sm')} Print</button><button class="btn btn-primary btn-sm" data-action="download-payslip" data-id="${e.id}">${icon('download', 'sm')} Download</button></div>`;
+      <div class="modal-foot"><span class="left">${icon('lock', 'sm')} Visible to employee &amp; payroll admins</span>${FRAMED ? '' : `<button class="btn btn-secondary btn-sm" data-action="print">${icon('printer', 'sm')} Print</button>`}<button class="btn btn-primary btn-sm" data-action="download-payslip" data-id="${e.id}">${icon('download', 'sm')} Download</button></div>`;
     openModal(html, 'md');
   }
 
@@ -2078,7 +2087,13 @@
   /* ------------------------------------------------------------------
      Router
      ------------------------------------------------------------------ */
-  function navigate(page, pkg = state.pkg) { location.hash = `#/${pkg}/${page}`; }
+  let route = location.hash;
+  function setRoute(h, replace) {
+    route = h;
+    try { history[replace ? 'replaceState' : 'pushState'](null, '', h); } catch (_) { /* sandboxed host: keep route in memory */ }
+  }
+  function go(h) { setRoute(h); onRoute(); }
+  function navigate(page, pkg = state.pkg) { go(`#/${pkg}/${page}`); }
   function switchPackage(pkg) {
     if (pkg === state.pkg) return;
     const target = PAGES[state.page].tier === 'premium' && pkg === 'standard' ? 'dashboard' : state.page;
@@ -2086,7 +2101,7 @@
     navigate(target, pkg);
   }
   function parseHash() {
-    const m = location.hash.match(/^#\/(standard|premium)(?:\/([\w-]+))?/);
+    const m = route.match(/^#\/?(standard|premium)(?:[\/-]([\w]+))?$/);
     return m ? { pkg: m[1], page: PAGES[m[2]] ? m[2] : 'dashboard' } : null;
   }
   function onRoute() {
@@ -2095,7 +2110,7 @@
     if (r.pkg === 'standard' && PAGES[r.page].tier === 'premium') {
       const back = state.pkg === 'standard' && PAGES[state.page].tier !== 'premium' && !$('#app').classList.contains('hidden') ? state.page : 'dashboard';
       openPremiumModal(PAGES[r.page].label);
-      history.replaceState(null, '', `#/standard/${back}`);
+      setRoute(`#/standard/${back}`, true);
       r.page = back;
     }
     const pkgChanged = r.pkg !== state.pkg;
@@ -2155,7 +2170,7 @@
     nav: (el) => {
       if (el.dataset.settings) ui.settingsTab = el.dataset.settings;
       closeModal(); clearSearch();
-      if (location.hash === `#/${state.pkg}/${el.dataset.page}`) render(); else navigate(el.dataset.page);
+      if (route === `#/${state.pkg}/${el.dataset.page}`) render(); else navigate(el.dataset.page);
     },
     'nav-filter': (el) => { setUi(el.dataset.key, el.dataset.val); navigate(el.dataset.page); },
     premium: (el) => { clearSearch(); closeDropdowns(); closeSidebar(); openPremiumModal(el.dataset.feature || 'Premium HRM'); },
@@ -2166,7 +2181,7 @@
       navigate(page, 'premium');
     },
     'switch-pkg': (el) => { closeModal(); closeDropdowns(); switchPackage(el.dataset.pkg); },
-    'go-landing': (el) => { closeDropdowns(); if (el.dataset.signout) toast('Signed out', 'Demo session ended', 'info'); location.hash = '#/'; window.scrollTo(0, 0); },
+    'go-landing': (el) => { closeDropdowns(); if (el.dataset.signout) toast('Signed out', 'Demo session ended', 'info'); go('#/'); window.scrollTo(0, 0); },
     employee: (el) => { clearSearch(); openEmployee(el.dataset.id); },
     'employee-tab': (el) => openEmployee(el.dataset.id, el.dataset.tab),
     payslip: (el) => openPayslip(el.dataset.id),
@@ -2446,6 +2461,14 @@
   hydrateIcons();
   initLanding();
   renderNotifs();
-  window.addEventListener('hashchange', onRoute);
+  const syncFromUrl = () => { route = location.hash; onRoute(); };
+  window.addEventListener('hashchange', syncFromUrl);
+  window.addEventListener('popstate', syncFromUrl);
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#/"]');
+    if (!a || e.defaultPrevented) return;
+    e.preventDefault();
+    go(a.getAttribute('href'));
+  });
   onRoute();
 })();
