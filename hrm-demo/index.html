@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaCore HR — HR Management Platform (Demo)</title>
+  <meta name="description" content="NovaCore HR product demonstration. Standard and Premium HRM packages. All information shown is fictional." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563eb'/%3E%3Cpath d='M10 22V10l12 12V10' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Demo environment notice -->
+  <div class="demo-banner" role="note">
+    <span class="dot"></span>
+    <strong>DEMO ENVIRONMENT</strong>
+    <span>— All information shown is fictional.</span>
+    <span class="long">&nbsp;No real employee, payroll or personal data is used.</span>
+  </div>
+
+  <!-- ================================================================
+       LANDING / PACKAGE SELECTION
+       ================================================================ -->
+  <div id="landing" class="landing">
+    <nav class="lp-nav">
+      <div class="lp-container">
+        <a class="brand" href="#/" aria-label="NovaCore HR home">
+          <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17V7l10 10V7"/></svg></span>
+          <span class="brand-name">NovaCore <span>HR</span></span>
+        </a>
+        <div class="lp-links">
+          <a href="#packages" data-scroll>Packages</a>
+          <a href="#compare" data-scroll>Compare</a>
+          <a href="#modules" data-scroll>Modules</a>
+        </div>
+        <div class="lp-nav-actions">
+          <a class="btn btn-secondary" href="#/standard/dashboard">Standard demo</a>
+          <a class="btn btn-primary" href="#/premium/dashboard">Launch Premium demo <i data-icon="arrow-right" class="sm"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="lp-hero">
+      <div class="lp-container">
+        <span class="eyebrow"><span class="new">Demo</span> NovaCore HR platform · Standard &amp; Premium editions</span>
+        <h1>Modern HR Management for <span class="accent">Growing Organizations</span></h1>
+        <p class="lead">Manage your people, attendance, leave, payroll and workforce operations from one intelligent HR platform.</p>
+        <div class="cta">
+          <a class="btn btn-primary btn-lg" href="#packages" data-scroll>Compare packages <i data-icon="arrow-right" class="sm"></i></a>
+          <a class="btn btn-secondary btn-lg" href="#/premium/dashboard"><i data-icon="play" class="sm"></i> Open interactive demo</a>
+        </div>
+        <div class="lp-trust">
+          <span><i data-icon="check-circle" class="sm"></i> Role-based access control</span>
+          <span><i data-icon="check-circle" class="sm"></i> Works on desktop, tablet &amp; mobile</span>
+          <span><i data-icon="check-circle" class="sm"></i> Built for teams of 20 – 2,000</span>
+        </div>
+
+        <div class="preview-wrap" aria-hidden="true">
+          <div class="preview">
+            <div class="preview-chrome"><i></i><i></i><i></i><div class="url"><i data-icon="lock" class="xs"></i> app.novacore-hr.demo/dashboard</div></div>
+            <div class="preview-body">
+              <div class="pv-side">
+                <div class="pv-brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17V7l10 10V7"/></svg></span>NovaCore HR</div>
+                <div class="pv-item active"><i data-icon="grid"></i>Dashboard</div>
+                <div class="pv-item"><i data-icon="users"></i>Employees</div>
+                <div class="pv-item"><i data-icon="clock"></i>Attendance</div>
+                <div class="pv-item"><i data-icon="calendar"></i>Leave</div>
+                <div class="pv-item"><i data-icon="wallet"></i>Payroll</div>
+                <div class="pv-item"><i data-icon="target"></i>Performance</div>
+                <div class="pv-item"><i data-icon="briefcase"></i>Recruitment</div>
+                <div class="pv-item"><i data-icon="trending"></i>Analytics</div>
+              </div>
+              <div class="pv-main">
+                <div class="pv-head"><b>Good morning, Alex</b><span class="pill info no-dot" style="height:22px;font-size:11px">October 2026</span></div>
+                <div class="pv-kpis">
+                  <div class="pv-kpi"><span>Total Employees</span><b>128</b><em>+4.1% this quarter</em></div>
+                  <div class="pv-kpi"><span>Present Today</span><b>114</b><em>89.1% attendance</em></div>
+                  <div class="pv-kpi"><span>On Leave</span><b>8</b><em style="color:var(--muted)">3 returning Mon</em></div>
+                  <div class="pv-kpi"><span>Pending Requests</span><b>6</b><em style="color:var(--amber)">Needs review</em></div>
+                </div>
+                <div class="pv-row">
+                  <div class="pv-card"><div class="t">Attendance overview</div>
+                    <div class="pv-bars"><span style="height:72%"></span><span class="l" style="height:64%"></span><span style="height:86%"></span><span class="l" style="height:70%"></span><span style="height:92%"></span><span class="l" style="height:80%"></span><span style="height:88%"></span><span class="l" style="height:76%"></span><span style="height:95%"></span><span class="l" style="height:83%"></span></div>
+                  </div>
+                  <div class="pv-card"><div class="t">Leave requests</div>
+                    <div class="pv-list">
+                      <div><span class="avatar" style="--av-bg:#dbe6fe;--av-fg:#1e40af">JC</span>John Carter<span class="pill warning">Pending</span></div>
+                      <div><span class="avatar" style="--av-bg:#ccfbf1;--av-fg:#115e59">SW</span>Sarah Williams<span class="pill success">Approved</span></div>
+                      <div><span class="avatar" style="--av-bg:#e0e7ff;--av-fg:#3730a3">MB</span>Michael Brown<span class="pill warning">Pending</span></div>
+                      <div><span class="avatar" style="--av-bg:#fef3c7;--av-fg:#92400e">EJ</span>Emily Johnson<span class="pill success">Approved</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="packages" class="lp-section">
+      <div class="lp-container">
+        <div class="section-head">
+          <div class="kicker">Packages</div>
+          <h2>Two editions. One platform that grows with you.</h2>
+          <p>Start with a complete HR foundation, or go further with automation, recruitment, performance and executive analytics.</p>
+        </div>
+
+        <div class="packages">
+          <article class="pkg">
+            <div class="pkg-top">
+              <div class="pkg-icon"><i data-icon="layers" class="lg"></i></div>
+              <span class="pkg-ribbon std">Core HR</span>
+            </div>
+            <h3>Standard HRM</h3>
+            <div class="pkg-title">Essential HR management for growing teams</div>
+            <p class="pkg-desc">Everything you need to run day-to-day HR operations with confidence.</p>
+            <div class="pkg-meta">
+              <div><b>8</b><span>Core modules</span></div>
+              <div><b>10</b><span>Key capabilities</span></div>
+              <div><b>3</b><span>Access roles</span></div>
+            </div>
+            <ul>
+              <li><span class="ck"><i data-icon="check"></i></span>Employee Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Employee Profiles</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Attendance Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Leave Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Payroll Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Benefits Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Basic HR Reports</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Role-Based Access</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Employee Search</li>
+              <li><span class="ck"><i data-icon="check"></i></span>HR Dashboard</li>
+            </ul>
+            <a class="btn btn-secondary btn-lg" href="#/standard/dashboard">Explore Standard <i data-icon="arrow-right" class="sm"></i></a>
+          </article>
+
+          <article class="pkg premium">
+            <div class="pkg-top">
+              <div class="pkg-icon"><i data-icon="sparkles" class="lg"></i></div>
+              <span class="pkg-ribbon"><i data-icon="crown" class="xs"></i> Most complete</span>
+            </div>
+            <h3>Premium HRM</h3>
+            <div class="pkg-title">Advanced HR management and automation</div>
+            <p class="pkg-desc">Automate workflows, hire faster, grow performance and lead with data.</p>
+            <div class="pkg-meta">
+              <div><b>15</b><span>Modules</span></div>
+              <div><b>22</b><span>Capabilities</span></div>
+              <div><b>∞</b><span>Custom roles</span></div>
+            </div>
+            <ul>
+              <li class="lead-item"><span class="ck"><i data-icon="check"></i></span>Everything in Standard</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Performance Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Recruitment / ATS</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Employee Self-Service</li>
+              <li><span class="ck"><i data-icon="check"></i></span>HR Workflow Automation</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Advanced Analytics</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Document Management</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Advanced Reports</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Notifications</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Custom Roles &amp; Permissions</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Audit Logs</li>
+              <li><span class="ck"><i data-icon="check"></i></span>Advanced Workforce Insights</li>
+            </ul>
+            <a class="btn btn-light btn-lg" href="#/premium/dashboard">Explore Premium <i data-icon="arrow-right" class="sm"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="lp-section alt">
+      <div class="lp-container">
+        <div class="section-head">
+          <div class="kicker">Side-by-side</div>
+          <h2>What's included in each edition</h2>
+          <p>Standard covers the full HR operations core. Premium adds the tools leadership teams use to scale.</p>
+        </div>
+        <div class="compare-card">
+          <div class="table-wrap">
+            <table class="compare" id="compareTable"></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules" class="lp-section">
+      <div class="lp-container">
+        <div class="section-head">
+          <div class="kicker">Inside the platform</div>
+          <h2>Click any module to open it in the live demo</h2>
+          <p>Every screen is interactive — search, filter, approve requests, run payroll, move candidates and toggle automations.</p>
+        </div>
+        <div class="module-grid" id="moduleGrid"></div>
+      </div>
+    </section>
+
+    <section class="lp-cta">
+      <div class="lp-container">
+        <div class="lp-cta-box">
+          <div>
+            <h3>See your HR system in action</h3>
+            <p>Switch between Standard and Premium at any time from inside the demo.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-outline-light btn-lg" href="#/standard/dashboard">Explore Standard</a>
+            <a class="btn btn-light btn-lg" href="#/premium/dashboard">Explore Premium <i data-icon="arrow-right" class="sm"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="lp-footer">
+      <div class="lp-container">
+        <div class="brand" style="font-size:14px"><span class="brand-mark" style="width:26px;height:26px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M7 17V7l10 10V7"/></svg></span><span class="brand-name">NovaCore <span>HR</span></span></div>
+        <span>Product demonstration · Fictional company “NovaCore Technologies” · All data is fictional.</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================================================================
+       APPLICATION
+       ================================================================ -->
+  <div id="app" class="app hidden">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sb-head">
+        <a class="brand" href="#/" title="Back to packages">
+          <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17V7l10 10V7"/></svg></span>
+          <span class="brand-name">NovaCore <span>HR</span></span>
+        </a>
+        <button class="icon-btn sm sb-close" id="sbClose" aria-label="Close menu"><i data-icon="x"></i></button>
+      </div>
+      <div id="sbPlan"></div>
+      <nav class="sb-nav" id="sbNav"></nav>
+      <div class="sb-foot" id="sbFoot"></div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu"><i data-icon="menu"></i></button>
+        <div class="global-search" id="globalSearch">
+          <i data-icon="search" class="sm"></i>
+          <input class="input" id="searchInput" type="search" placeholder="Search employees, modules…" autocomplete="off" aria-label="Search" />
+          <span class="kbd">/</span>
+          <div class="dropdown search-results" id="searchResults"></div>
+        </div>
+        <div class="topbar-right">
+          <button class="icon-btn search-toggle" id="searchToggle" aria-label="Search"><i data-icon="search"></i></button>
+          <div class="pkg-switch" id="pkgSwitch" role="tablist" aria-label="Package">
+            <span class="thumb"></span>
+            <button data-pkg="standard" role="tab"><i data-icon="layers"></i>STANDARD</button>
+            <button data-pkg="premium" class="p" role="tab"><i data-icon="sparkles"></i>PREMIUM</button>
+          </div>
+          <span class="tb-divider"></span>
+          <div class="dd-wrap">
+            <button class="icon-btn" id="notifBtn" aria-label="Notifications"><i data-icon="bell"></i><span class="badge-dot" id="notifDot"></span></button>
+            <div class="dropdown notif-panel" id="notifPanel"></div>
+          </div>
+          <div class="dd-wrap">
+            <button class="profile-btn" id="profileBtn" aria-label="Account menu">
+              <span class="avatar sm" style="--av-bg:#0f172a;--av-fg:#fff">AM</span>
+              <span class="meta"><b>Alex Morgan</b><span>HR Administrator</span></span>
+              <i data-icon="chevron-down" class="sm"></i>
+            </button>
+            <div class="dropdown" id="profileMenu"></div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content" id="view" tabindex="-1"></main>
+
+      <footer class="app-footer">
+        <span>© 2026 NovaCore Technologies (fictional) · NovaCore HR <span id="footPkg">Standard</span> edition</span>
+        <span>Demo build · No real data is stored or transmitted</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Overlays -->
+  <div class="modal-root" id="modalRoot" aria-modal="true" role="dialog">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-scroller" id="modalScroller"></div>
+  </div>
+  <div class="toast-root" id="toastRoot" aria-live="polite"></div>
+  <div class="chart-tip" id="chartTip"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
